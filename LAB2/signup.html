@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>CookPang</title>
+        <link rel="stylesheet" type="text/css" href="main.css">
+    </head>
+    <body>
+        <h1 class="com_name">CookPang</h1>
+        <button><a href="login.html">로그인</a></button>
+        <button class="menu">회원가입</button>
+
+        <form method="get" action="https://www.example.com">
+            <p><label>아이디<br>
+                <input name="identity" type="text" size="30" required autofocus>  
+            </label></p>
+            <p><label>비밀번호<br>
+                <input name="password" type="password" size="30" placeholder="영문 대소문자, 기호 포함 8자 이상" required>
+            </label></p>
+            <p><label>비밀번호 확인<br>
+                <input name="password" type="password" size="30" placeholder="영문 대소문자, 기호 포함 8자 이상" required>
+            </label></p>
+
+            <hr>
+
+            <p><label>이름<br>
+                <input name="name" type="text" size="30" required>
+            </label></p>
+            <p><label>생년월일<br>
+                <input name="birthday" type="date" required>
+            </label></p>
+            <p><label>성별<br>
+                <label><input type="radio" value="male">
+                남성</label>
+                <label><input type="radio" value="female">
+                여성</label>
+                <label><input type="radio" value="other" checked>
+                기타</label>
+            </label></p>
+            <p><label>이메일<br>
+                <input name="email" type="email" size="30" autocomplete>
+            </label></p>
+            <p><label>전화번호<br>
+                <input name="tel" type="tel" size="30" placeholder="&apos;-&apos;없이 숫자만 입력" required>
+            </label></p>
+
+            <hr>
+
+            <p><label>관심 및 선호 식재료</label><br>
+                <label class="foods"><input type="checkbox" value="male">
+                채소</label>
+                <label class="foods"><input type="checkbox" value="female">
+                과일</label>
+                <label class="foods"><input type="checkbox" value="other">
+                곡물.견과류</label>
+                <label class="foods"><input type="checkbox" value="male">
+                수산.해산.건어물</label>
+                <label class="foods"><input type="checkbox" value="female">
+                정육.계란</label>
+                <label class="foods"><input type="checkbox" value="other">
+                간편식.면</label>
+                <label class="foods"><input type="checkbox" value="male">
+                양념.오일</label>
+                <label class="foods"><input type="checkbox" value="male">
+                생수.음료.우유.커피</label>
+                <label class="foods"><input type="checkbox" value="female">
+                간식.베이커리</label>
+                <label class="foods"><input type="checkbox" value="other">
+                밀키트</label>
+            </p>
+
+            <p>예상 구매 횟수<span class="super"> 월 N 회</span><br>
+                <input name="number" type="number" min="1" max="10" step="1" value="2">
+            </p>
+
+            <p><label>가입경로</label><br>
+                <select name="route">
+                    <option selected>선택하기</option>
+                    <option>인터넷 검색</option>
+                    <option>TV 및 영상 광고</option>
+                    <option>지인 추천</option>
+                    <option>프로모션 행사</option>
+                    <option>기타</option>
+                </select>
+            </p>
+            
+            <p>
+                <input class="sub_button" type="submit" value="가입하기">
+            </p>
+            <p>
+                <input class="re_button" type="reset" value="취소하기">
+            </p>
+        </form>
+
+    </body>
+</html>
