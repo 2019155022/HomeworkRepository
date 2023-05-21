@@ -9,12 +9,32 @@ body
     max-width: 1020px;
     margin: 0 auto;
 }
-.flex_container, .cont, .category
+
+.flex_container, .cont
 {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: center;
+}
+
+.menu_content
+{
+    margin-top: 100px;
+    display: grid;
+    grid-template-rows: 10% 1fr;
+    grid-gap: 20px;
+    grid-template-areas: 
+    "menu content";
+}
+.left_menu
+{
+    grid-area: menu;
+    margin-left: 0%;
+}
+.showup
+{
+    grid-area: content;
 }
 .img_con, .group
 {
@@ -137,7 +157,6 @@ footer
 p
 {
     width: 50%;
-    margin-left: 25%;
     text-align: left;
 }
  
@@ -200,4 +219,11 @@ h3, .content
 .co
 {
     margin: 10px;
+}
+.searchBtn
+{
+    width: 100%;
+    text-align: center;
+    padding-top: .5em;
+    padding-bottom: .5em;
 }

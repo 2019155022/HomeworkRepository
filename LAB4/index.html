@@ -5,15 +5,13 @@
         <title>CookPang</title>
         <link rel="stylesheet" type="text/css" href="main.css">
         <script>
-            function loadItem(){
-                return fetch("product.json")
-                    .then(res => res.json())
-                    .then(obj => obj.items);
-            }
 
-            loadItem().then((items) => {
-                console.log(items);
-            })
+            function loadItem(){
+                return fetch('product.json')
+                    .then((res) => res.json())
+                    .then((json) => json.items)
+                    .catch((err) => console.log(err))
+            }
 
             function all(items){
                 for (let i = 0; i < product.length; i++){
@@ -25,86 +23,72 @@
 
                     const dataWrap = document.createElement('div');
                     dataWrap.className = "group";
-                    const dataContainer = dataWrap.createElement('div');
+                    const dataContainer = document.createElement('div');
                     dataContainer.className = "container";
-                    const dataBox = dataContainer.createElement('div');
+                    const dataBox = document.createElement('div');
                     dataBox.className = "textbox";
-                    const dataBoxText = dataBox.createElement('p');
+                    const dataBoxText = document.createElement('p');
                     dataBox.className = "img_text";
                     dataBox.textContent = `${proName}<br>${proPrice}`
-                    const dataImg = dataContainer.createElement('img');
+                    const dataImg = document.createElement('img');
                     dataImg.className = "img_best"
-                    dataImg.img
-
-                    const dataText = dataWrap.createElement('p');
+                    dataImg.src = proImg
+                    const dataText = document.createElement('p');
+                    dataText.textContent = `${proCategory}`
                     
+                    showup.onscroll = () => {
+                        if (window.innerHeight + window.scrollY >= document.body.offsetHeight){load();}
+                    };
                 }
-            }
-
-            function changeCategory(cate){
-                var obj, dbParam, xmlhttp, myObj, x, txt = "";
-                obj = { "table":sel, "limit":5 };
-                dbParam = JSON.stringify(obj);
-                xmlhttp = new XMLHttpRequest();
-                xmlhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200)
-                    {
-                        myObj = JSON.parse(this.responseText);
-                        txt += "<table border='1'>";
-                        for (x in myObj)
-                        {
-                            txt += "<tr><td>" + myObj[x].name + "</td></tr>";
-                        }
-                        txt += "</table>";
-                        document.getElementById("demo").innerHTML = txt;
-                    }
-                };
-                xmlhttp.open("POST", "demo_json.php", true);
-                xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xmlhttp.send("x=" + dbParam);
             }
 
             function searchEvt(word){
 
             }
+
         </script>
     </head>
     <body>
         <header>
             <h1 class="hi">CookPang</h1>
+            <nav class="flex_container">
+                <button class="menu">홈</button>
+                <button><a href="login.html">로그인</a></button>
+                <button><a href="signup.html">회원가입</a></button>
+            </nav>
         </header>
-        <nav class="flex_container">
-            <button class="menu">홈</button>
-            <button><a href="login.html">로그인</a></button>
-            <button><a href="signup.html">회원가입</a></button>
-        </nav>
-        <div class="left_menu">
-            <form method="get" autocomplete="on">
-                <p><label>키워드 검색
-                    <input type="search" placeholder="키워드를 입력해주세요" onkeypress="if(event.keyCode == '13'){searchEvt(this.value);}"/></label></p>
-                <p><label>카테고리</label>
-                    <input type="text" id="cate_select" list="category" placeholder="카테고리를 골라주세요" onchange="change_category(this.value)"/>
-                    <datalist id="category">
-                        <option value="채소">
-                        <option value="과일">
-                        <option value="곡물,견과류">
-                        <option value="수산,해산">
-                        <option value="정육,계란">
-                        <option value="간편식,면">
-                        <option value="양념,오일">
-                        <option value="생수,음료">
-                        <option value="유제품">
-                        <option value="간식,베이커리">
-                        <option value="밀키트">
-                    </datalist></p>
-                <p><label>정렬방식
-                    <select id="sorting">
-                        <option selected>낮은가격순</option>
-                        <option>높은가격순</option>
-                    </select></label></p>
-            </form>
+        <div class="menu_content">
+            <div class="left_menu">
+                <form method="get" autocomplete="on">
+                    <p><label>키워드 검색
+                        <input type="search" placeholder="키워드를 입력해주세요"/></label></p>
+                    <p><label>카테고리</label>
+                        <input type="text" id="cate_select" list="category" placeholder="카테고리를 골라주세요"/>
+                        <datalist id="category">
+                            <option value="채소">
+                            <option value="과일">
+                            <option value="곡물,견과류">
+                            <option value="수산,해산">
+                            <option value="정육,계란">
+                            <option value="간편식,면">
+                            <option value="양념,오일">
+                            <option value="생수,음료">
+                            <option value="유제품">
+                            <option value="간식,베이커리">
+                            <option value="밀키트">
+                        </datalist></p>
+                    <p><label>정렬방식
+                        <select id="sorting">
+                            <option selected>낮은가격순</option>
+                            <option>높은가격순</option>
+                        </select></label></p>
+                    <input type="submit" class="searchBtn" value="찾기" onclick="searchEvt()"/>
+                </form>
+            </div>
+            <div id="showup">
+            </div>
         </div>
-        <div id="showup"></div>
+
         <div class="content">
             <p class="cook_con">
                 세계의 수많은 푸드마켓 중에 최고는 단연 쿸팡! 세계의 수많은 푸드마켓 중에 최고는 단연 쿸팡! 세계의 수많은 푸드마켓 중에 최고는 단연 쿸팡! 세계의 수많은 푸드마켓 중에 최고는 단연 쿸팡! 세계의 수많은 푸드마켓 중에 최고는 단연 쿸팡! 세계의 수많은 푸드마켓 중에 최고는 단연 쿸팡! 세계의 수많은 푸드마켓 중에 최고는 단연 쿸팡! 세계의 수많은 푸드마켓 중에 최고는 단연 쿸팡! 세계의 수많은 푸드마켓 중에 최고는 단연 쿸팡! 세계의 수많은 푸드마켓 중에 최고는 단연 쿸팡! 세계의 수많은 푸드마켓 중에 최고는 단연 쿸팡! 세계의 수많은 푸드마켓 중에 최고는 단연 쿸팡! 세계의 수많은 푸드마켓 중에 최고는 단연 쿸팡! 세계의 수많은 푸드마켓 중에 최고는 단연 쿸팡! 세계의 수많은 푸드마켓 중에 최고는 단연 쿸팡! 세계의 수많은 푸드마켓 중에 최고는 단연 쿸팡! 세계의 수많은 푸드마켓 중에 최고는 단연 쿸팡! 세계의 수많은 푸드마켓 중에 최고는 단연 쿸팡! 세계의 수많은 푸드마켓 중에 최고는 단연 쿸팡! 세계의 수많은 푸드마켓 중에 최고는 단연 쿸팡! 세계의 수많은 푸드마켓 중에 최고는 단연 쿸팡! 세계의 수많은 푸드마켓 중에 최고는 단연 쿸팡! 세계의 수많은 푸드마켓 중에 최고는 단연 쿸팡! 세계의 수많은 푸드마켓 중에 최고는 단연 쿸팡! 
